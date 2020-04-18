@@ -1,4 +1,5 @@
-"name": "animal-naming-server",
+{
+  "name": "animal-naming-server",
   "version": "1.0.0",
   "description": "",
   "main": "src/server.js",
@@ -40,4 +41,3 @@
     "supertest": "^4.0.2"
   }
 }
-
