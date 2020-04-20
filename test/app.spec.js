@@ -37,3 +37,31 @@ describe('handleSubmit', () => {
     expect(fn).to.throw();
   });
 });
+
+const getAllAnimals = require('../animals/animals-service');
+
+describe('getAllAnimals', () => {
+  it('should return a list of all the animals in the database', () => {
+    // define inputs
+    const animalsArray = [],
+      updatedArray = animalsArray + i,
+      expectedAnswer = animalsArray[i];
+
+    // invoke the function
+    const actualAnswer = getAllAnimals(animalsArray);
+
+    // assert that expected === actual
+    expect(actualAnswer).to.equal(expectedAnswer);
+  });
+
+  it('should throw an error when there are no animals in the database', () => {
+    // define inputs
+    const animalsArray, i;
+
+    // set up the function call
+    const fn = () => { getAllAnimals(animalsArray) };
+
+    // assert that exception is thrown
+    expect(fn).to.throw();
+  });
+});
