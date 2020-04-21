@@ -8,8 +8,8 @@ const jsonParser = express.json()
 
 const serializeName = name => ({
     id: name.id,
-    name: xss(name.name),
-    animalid: xss(name.animalid),
+    name: xss(name.nametext),
+    animalid: xss(name.animalsid),
     votes: xss(name.votes)
 
 })

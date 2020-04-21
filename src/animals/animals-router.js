@@ -8,14 +8,14 @@ const jsonParser = express.json();
 
 const serializeAnimals = animal => ({
 	id: animal.id,
-    url: Image.url
+    url: animal.imageurl,
 });
 
 animalsRouter
 	.route("/")
 	.get((req, res, next) => {
 		const knexInstance = req.app.get("db");
-	AnimalsService.getAllAnimals(knexInstance)
+	    AnimalsService.getAllAnimals(knexInstance)
 			.then(animals => {
 				res.json(animals.map(serializeAnimals));
 			})
