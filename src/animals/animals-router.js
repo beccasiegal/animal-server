@@ -40,7 +40,7 @@ animalsRouter
             .then(animal => {
                 res.status(201)
                     .location(path.posix.join(req.originalUrl + `/${animal.id}`))
-                    .json(serializeAnimal(animal));
+                    .json(serializeAnimals(animal));
             })
             .catch(next)
     });
@@ -61,7 +61,7 @@ animalsRouter
             .catch(next);
     })
     .get((req, res, next) => {
-        res.json(serializeAnimal(res.animal));
+        res.json(serializeAnimals(res.animal));
     })
     .delete((req, res, next) => {
         AnimalsService.deleteAnimal(req.app.get('db'), req.params.animal_id)
