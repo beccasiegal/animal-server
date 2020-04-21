@@ -24,8 +24,7 @@ animalsRouter
 	.post(jsonParser, (req, res, next) => {
 		const { url } = req.body;
 		const newAnimal = {
-            url,
-            id
+            url
 		};
 
 		for (const [key, value] of Object.entries(newAnimal))
@@ -94,4 +93,22 @@ animalsRouter
         .catch(next)
     })
 
+    animalsRouter
+    .route('/:animal/:id/names')
+    .all((req, res, next) => {
+        AnimalsService.getById(req.app.get('db'), req.params.animalsid)
+            .then(animal => {
+                if(!animal) {
+                    return res.status(404).json({
+						error: { message: `Animal doesn't exist` }
+					}); 
+                }
+                res.animal = animal;
+                next();
+            })
+            .catch(next);
+    })
+    .get((req, res, next) => {
+        res.json(serializeAnimals(res.animal));
+    })
 module.exports = animalsRouter;
