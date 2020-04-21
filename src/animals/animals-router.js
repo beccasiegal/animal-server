@@ -96,7 +96,7 @@ animalsRouter
     animalsRouter
     .route('/:animal/:id/names')
     .all((req, res, next) => {
-        AnimalsService.getById(req.app.get('db'), req.params.animalsid)
+        AnimalsService.getById(req.app.get('db'), req.body.animalsid)
             .then(animal => {
                 if(!animal) {
                     return res.status(404).json({
