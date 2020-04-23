@@ -27,6 +27,15 @@ const animalsService = {
         return knex('animal')
             .where({ id })
             .update(newAnimalFields);
+
+        },
+        getNamesByAnimalId(knex, animal_id){
+        // The names table has a foreign key 'animalsid' 
+        // We use that to find all the names for that animal
+            return knex
+                .from('names')
+                .select('*')
+                .where('animalsid', animal_id)
     }
 }
 
