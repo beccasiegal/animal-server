@@ -38,6 +38,7 @@ describe('handleSubmit', () => {
   });
 });
 
+
 const getAllAnimals = require('../animals/animals-service');
 
 describe('getAllAnimals', () => {
