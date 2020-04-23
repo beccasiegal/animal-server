@@ -6,6 +6,7 @@ const AnimalsService = require("./animals-service");
 const animalsRouter = express.Router();
 const jsonParser = express.json();
 
+//question: are URLs suceptible to XSS? Do they need to be sanitized?
 const serializeAnimals = animal => ({
 	id: animal.id,
     url: animal.imageurl,
@@ -14,6 +15,7 @@ const serializeAnimals = animal => ({
 animalsRouter
 	.route("/")
 	.get((req, res, next) => {
+        // console.log("Entering animals-router... route= /")
 		const knexInstance = req.app.get("db");
 	    AnimalsService.getAllAnimals(knexInstance)
 			.then(animals => {
@@ -47,6 +49,14 @@ animalsRouter
 animalsRouter
     .route('/:animal_id')
     .all((req, res, next) => {
+
+                // comment these out when you are satisfied it works
+                console.log("Entering animals-router... route= /:animal_id")
+                console.log('animals-router.js: req.headers: ', req.headers);
+                console.log('animals-router.js: req.originalUrl: ', req.originalUrl);
+                console.log('animals-router.js: req.params: ', req.params);
+                console.log('animals-router.js: req.query: ', req.query);
+        
         AnimalsService.getById(req.app.get('db'), req.params.animal_id)
             .then(animal => {
                 if(!animal) {
